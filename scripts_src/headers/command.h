@@ -644,9 +644,10 @@ FLOAT_MSG_BLUE
 #define num_to_num_text(x)          g_mstr(2000+x)
 
 // Option(Message Number, Node Number, IQ)         ==>     giQ_Option(IQ, Message Number, Node Number)      -rwh2 (11/12/97)
-#define GOption(x,y,z)              giQ_Option(z,NAME,x,y,GOOD_REACTION)
-#define NOption(x,y,z)              giQ_Option(z,NAME,x,y,NEUTRAL_REACTION)
-#define BOption(x,y,z)              giQ_Option(z,NAME,x,y,BAD_REACTION)
+#define GOption(x,y,z)              if (true) then begin giQ_Option(z, NAME, x, y, GOOD_REACTION); giQ_Option((z < 2) * 20 - (z - 1), NAME, g_mstr(40000), Node999_clone, GOOD_REACTION); end else true
+#define NOption(x,y,z)              if (true) then begin giQ_Option(z, NAME, x, y, NEUTRAL_REACTION); giQ_Option((z < 2) * 20 - (z - 1), NAME, g_mstr(40000), Node999_clone, NEUTRAL_REACTION); end else true
+#define BOption(x,y,z)              if (true) then begin giQ_Option(z, NAME, x, y, BAD_REACTION); giQ_Option((z < 2) * 20 - (z - 1), NAME, g_mstr(40000), Node999_clone, BAD_REACTION); end else true
+
 #define GLowOption(x,y)             giQ_Option(LOW_IQ,NAME,x,y,GOOD_REACTION)
 #define NLowOption(x,y)             giQ_Option(LOW_IQ,NAME,x,y,NEUTRAL_REACTION)
 #define BLowOption(x,y)             giQ_Option(LOW_IQ,NAME,x,y,BAD_REACTION)
@@ -1349,5 +1350,9 @@ variable removed_qty;
   not protected_from_gas(x) and (critter_kill_type(x) != KILL_TYPE_robot_kills) \
 )
 #define can_be_gas_poisoned(x) ((x == dude_obj) and not (protected_from_gas(x)))
+
+procedure Node999_clone;
+procedure Node999_clone begin
+end
 
 #endif // COMMAND_H
