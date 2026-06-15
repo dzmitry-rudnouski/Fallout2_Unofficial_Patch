@@ -470,3 +470,6 @@
 
 #added by killap
 {30000}{}{You have stolen from your own tribe.}
+
+#dialog mod
+{40000}{}{                               [too stupid for this answer, end]}
